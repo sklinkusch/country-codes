@@ -45,9 +45,9 @@ class CountryCodes {
         } = country;
         const html = `
         <h2>${name} (${alpha2Code})</h2>
-        <p><b>${name}</b> (in ${
-          languages[0].name
-        }: <i>${nativeName}</i>) is a country in ${subregion}. ${
+        <p><b>${name}</b> (in ${languages[0].name}: <i>${nativeName}</i>) ${
+          subregion != "" ? `is a country in ${subregion}` : ""
+        }. ${
           capital != "" ? `Its capital is ${capital}.` : ""
         } There are ${population} inhabitants living on ${area} square kilometres. Its dialing code is ${callingCodes
           .map(x => x)
