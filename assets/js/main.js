@@ -30,9 +30,34 @@ class CountryCodes {
   viewData(array) {
     const output = array
       .map(country => {
-        return `${this.number}: ${country.name}`;
+        const {
+          name,
+          alpha2Code,
+          languages,
+          nativeName,
+          subregion,
+          capital,
+          population,
+          area,
+          callingCodes,
+          timezones,
+          flag
+        } = country;
+        const html = `
+        <h2>${name} (${alpha2Code})</h2>
+        <p><b>${name}</b> (in ${
+          languages[0].name
+        }: <i>${nativeName}</i>) is a country in ${subregion}. ${
+          capital != "" ? `Its capital is ${capital}.` : ""
+        } There are ${population} inhabitants living on ${area} square kilometres. Its dialing code is ${callingCodes
+          .map(x => x)
+          .join(", ")}. It is located in the timezones 
+          ${timezones.map(x => x).join(", ")}.</p>
+         <div><img src="${flag}" alt="flag of ${name}" title="flag of ${name}" width="200px"></div>
+        `;
+        return html;
       })
-      .join("<br>");
+      .join("");
     this.container.innerHTML = output;
   }
 }
