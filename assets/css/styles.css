@@ -1,0 +1,39 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  background-image: url("../images/annie-spratt-370270-unsplash.jpg");
+  background-size: cover;
+  /* background-repeat: no-repeat; */
+  background-position-x: center;
+}
+header {
+  width: 85%;
+  background: #333;
+  color: white;
+  margin: 20px auto 10px auto;
+  text-align: center;
+  padding: 15px;
+}
+main {
+  width: 85%;
+  margin: 10px auto;
+  text-align: center;
+  background-color: white;
+  opacity: 0.8;
+  padding: 20px;
+}
+input[type="text"] {
+  padding: 10px;
+  border: 2px solid black;
+}
+input[type="button"] {
+  padding: 10px;
+  background: yellow;
+}
+#container {
+  margin-top: 20px;
+  font-size: 1.5em;
+}
