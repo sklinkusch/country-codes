@@ -49,11 +49,17 @@ class CountryCodes {
           subregion != "" ? `is a country in ${subregion}` : ""
         }. ${
           capital != "" ? `Its capital is ${capital}.` : ""
-        } There are ${population} inhabitants living on ${area} square kilometres. Its dialing code is ${callingCodes
-          .map(x => x)
-          .join(", ")}. It is located in the timezones 
+        } There are ${population} inhabitants living on ${area} square kilometres. Its ${
+          callingCodes.length == 1 ? "dialing code is" : "dialing codes are"
+        } ${callingCodes.map(x => x).join(", ")}. It is located in the ${
+          timezones.length == 1 ? "timezone" : "timezones"
+        } 
           ${timezones.map(x => x).join(", ")}.</p>
-         <div><img src="${flag}" alt="flag of ${name}" title="flag of ${name}" width="200px"></div>
+         ${
+           flag != ""
+             ? `<div><img src="${flag}" alt="flag of ${name}" title="flag of ${name}" width="200px"></div>`
+             : ""
+         }
         `;
         return html;
       })
