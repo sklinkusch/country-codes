@@ -47,6 +47,18 @@ class CountryCodes {
             topLevelDomain,
             flag
           } = country;
+          let organizations = "";
+          if (regionalBlocs.length > 0) {
+            if (regionalBlocs.length == 1) {
+              organizations = `It is a member of the following organization: ${regionalBlocs
+                .map(Bloc => Bloc.name)
+                .join(", ")}. `;
+            } else {
+              organizations = `It is a member of the following organizations: ${regionalBlocs
+                .map(Bloc => Bloc.name)
+                .join(", ")}. `;
+            }
+          }
           const html = `
         <h2>${name} (${alpha2Code})</h2>
         <p><b>${name}</b> (in ${languages[0].name}: <i>${nativeName}</i>) ${
@@ -62,13 +74,9 @@ class CountryCodes {
           } ${callingCodes.map(x => x).join(", ")}. It is located in the ${
             timezones.length == 1 ? "timezone" : "timezones"
           } 
-          ${timezones
-            .map(x => x)
-            .join(", ")}. It is a member of the following ${
-            regionalBlocs.length == 1 ? "organization" : "organizations"
-          }: ${regionalBlocs
-            .map(regionalBloc => regionalBloc.name)
-            .join(", ")}. The top level ${
+          ${timezones.map(x => x).join(", ")}. 
+          ${organizations}
+          The top level ${
             topLevelDomain.length == 1 ? "domain" : "domains"
           } used by this country ${
             topLevelDomain.length == 1 ? "is" : "are"
