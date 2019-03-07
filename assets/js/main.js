@@ -94,7 +94,7 @@ class CountryCodes {
     } catch (error) {
       const errorOutput = `<h2>No country (${
         this.number
-      })</h2><p>The country code you entered did non match any country.</p><div><img src="assets/images/Pirate_Flag.svg" width="200px"></div>`;
+      })</h2><p>The country code you entered did non match any country.</p><div><img src="assets/images/skull-309903_960_720.png" width="200px"></div>`;
       this.container.innerHTML = errorOutput;
     }
   }
