@@ -41,6 +41,9 @@ class CountryCodes {
           area,
           callingCodes,
           timezones,
+          currencies,
+          regionalBlocs,
+          topLevelDomain,
           flag
         } = country;
         const html = `
@@ -49,12 +52,24 @@ class CountryCodes {
           subregion != "" ? `is a country in ${subregion}` : ""
         }. ${
           capital != "" ? `Its capital is ${capital}.` : ""
-        } There are ${population} inhabitants living on ${area} square kilometres. Its ${
+        } There are ${population} inhabitants living on ${area} square kilometres. The country uses the following ${
+          currencies.length == 1 ? "currency" : "currencies"
+        }: ${currencies
+          .map(currency => `${currency.name} (${currency.symbol})`)
+          .join(", ")}. Its ${
           callingCodes.length == 1 ? "dialing code is" : "dialing codes are"
         } ${callingCodes.map(x => x).join(", ")}. It is located in the ${
           timezones.length == 1 ? "timezone" : "timezones"
         } 
-          ${timezones.map(x => x).join(", ")}.</p>
+          ${timezones
+            .map(x => x)
+            .join(", ")}. It is a member of the following ${
+          regionalBlocs.length == 1 ? "organization" : "organizations"
+        }: ${regionalBlocs
+          .map(regionalBloc => regionalBloc.name)
+          .join(", ")}. The top level domains used by this country ${
+          topLevelDomain.length == 1 ? "is" : "are"
+        }: ${topLevelDomain.map(domain => domain).join(", ")}.</p>
          ${
            flag != ""
              ? `<div><img src="${flag}" alt="flag of ${name}" title="flag of ${name}" width="200px"></div>`
