@@ -68,7 +68,9 @@ class CountryCodes {
             regionalBlocs.length == 1 ? "organization" : "organizations"
           }: ${regionalBlocs
             .map(regionalBloc => regionalBloc.name)
-            .join(", ")}. The top level domains used by this country ${
+            .join(", ")}. The top level ${
+            topLevelDomain.length == 1 ? "domain" : "domains"
+          } used by this country ${
             topLevelDomain.length == 1 ? "is" : "are"
           }: ${topLevelDomain.map(domain => domain).join(", ")}.</p>
          ${
