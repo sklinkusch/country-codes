@@ -28,58 +28,65 @@ class CountryCodes {
     this._number = newValue;
   }
   viewData(array) {
-    const output = array
-      .map(country => {
-        const {
-          name,
-          alpha2Code,
-          languages,
-          nativeName,
-          subregion,
-          capital,
-          population,
-          area,
-          callingCodes,
-          timezones,
-          currencies,
-          regionalBlocs,
-          topLevelDomain,
-          flag
-        } = country;
-        const html = `
+    try {
+      const output = array
+        .map(country => {
+          const {
+            name,
+            alpha2Code,
+            languages,
+            nativeName,
+            subregion,
+            capital,
+            population,
+            area,
+            callingCodes,
+            timezones,
+            currencies,
+            regionalBlocs,
+            topLevelDomain,
+            flag
+          } = country;
+          const html = `
         <h2>${name} (${alpha2Code})</h2>
         <p><b>${name}</b> (in ${languages[0].name}: <i>${nativeName}</i>) ${
-          subregion != "" ? `is a country in ${subregion}` : ""
-        }. ${
-          capital != "" ? `Its capital is ${capital}.` : ""
-        } There are ${population} inhabitants living on ${area} square kilometres. The country uses the following ${
-          currencies.length == 1 ? "currency" : "currencies"
-        }: ${currencies
-          .map(currency => `${currency.name} (${currency.symbol})`)
-          .join(", ")}. Its ${
-          callingCodes.length == 1 ? "dialing code is" : "dialing codes are"
-        } ${callingCodes.map(x => x).join(", ")}. It is located in the ${
-          timezones.length == 1 ? "timezone" : "timezones"
-        } 
+            subregion != "" ? `is a country in ${subregion}` : ""
+          }. ${
+            capital != "" ? `Its capital is ${capital}.` : ""
+          } There are ${population} inhabitants living on ${area} square kilometres. The country uses the following ${
+            currencies.length == 1 ? "currency" : "currencies"
+          }: ${currencies
+            .map(currency => `${currency.name} (${currency.symbol})`)
+            .join(", ")}. Its ${
+            callingCodes.length == 1 ? "dialing code is" : "dialing codes are"
+          } ${callingCodes.map(x => x).join(", ")}. It is located in the ${
+            timezones.length == 1 ? "timezone" : "timezones"
+          } 
           ${timezones
             .map(x => x)
             .join(", ")}. It is a member of the following ${
-          regionalBlocs.length == 1 ? "organization" : "organizations"
-        }: ${regionalBlocs
-          .map(regionalBloc => regionalBloc.name)
-          .join(", ")}. The top level domains used by this country ${
-          topLevelDomain.length == 1 ? "is" : "are"
-        }: ${topLevelDomain.map(domain => domain).join(", ")}.</p>
+            regionalBlocs.length == 1 ? "organization" : "organizations"
+          }: ${regionalBlocs
+            .map(regionalBloc => regionalBloc.name)
+            .join(", ")}. The top level domains used by this country ${
+            topLevelDomain.length == 1 ? "is" : "are"
+          }: ${topLevelDomain.map(domain => domain).join(", ")}.</p>
          ${
            flag != ""
              ? `<div><img src="${flag}" alt="flag of ${name}" title="flag of ${name}" width="200px"></div>`
              : ""
          }
         `;
-        return html;
-      })
-      .join("");
-    this.container.innerHTML = output;
+          return html;
+        })
+        .join("");
+      this.container.innerHTML = output;
+    } catch (error) {
+      const errorOutput = `<h2>No country (${
+        this.number
+      })</h2><p>The country code you entered did non match any country.</p><div><img src="assets/images/Pirate_Flag.svg" width="200px"></div>`;
+      this.container.innerHTML = errorOutput;
+    }
   }
 }
 
